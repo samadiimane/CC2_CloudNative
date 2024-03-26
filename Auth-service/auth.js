@@ -58,4 +58,16 @@ router.post('/connecterUtilisateur', async (req, res) => {
     }
 });
 
+// Question 10 : verification d'exsistence d'un utilisateur
+router.get('/utilisateurs/:utilisateurNom', async (req, res) => {
+  try {
+    const utilisateurNom = req.params.utilisateurNom;
+    const utilisateur = await Utilisateur.findOne({ nom: utilisateurNom });
+    res.json(utilisateur);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Erreur serveur");
+  }
+});
+
 module.exports = router;
