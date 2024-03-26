@@ -23,10 +23,11 @@ function verifyToken(req, res, next) {
 router.use(verifyToken);
 
 // Question 11 : la creation d'une activite
-app.post('/activites', async (req, res) => {
+app.post('/ajouterActivite', async (req, res) => {
     try {
       const { utilisateur_id, tache_id } = req.body;
-  
+      
+    // verification d'exsistence d'utilisateur et de tache
       const utilisateurExiste = await Utilisateur.findById(utilisateur_id);
       if (!utilisateurExiste) {
         return res.status(404).json({ message: "L'utilisateur n'existe pas." });

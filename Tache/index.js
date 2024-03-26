@@ -21,6 +21,8 @@ const db = mongoose.connection;
 db.on('error', (err) => console.log(`Erreur de connexion à MongoDB ${err}`));
 db.once('open', () => console.log('Connexion à MongoDB réussie'));
 
-app.use('/', require('../Auth-service/auth.js'));
+
+app.use('/ajouterTaches', require('../Tache/tacheRoutes.js'));
+app.use('/taches/:tachetitre', require('../Tache/tacheRoutes.js'));
 
 app.listen(PORT, () => console.log(`Serveur démarré sur le port ${PORT}`))
